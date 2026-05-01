@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify 1K€/Jour - Analyse de Trader & Plan d'Attaque</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- === HERO SECTION === -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="grid-overlay"></div>
+            <div class="glow glow-1"></div>
+            <div class="glow glow-2"></div>
+            <div class="particles" id="particles"></div>
+        </div>
+
+        <nav class="navbar">
+            <div class="nav-brand">
+                <span class="brand-icon">◈</span>
+                <span class="brand-text">SHOPIFY<span class="accent">TRADER</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#market-analysis" class="nav-link">Analyse Marché</a>
+                <a href="#calculator" class="nav-link">Simulateur</a>
+                <a href="#strategy" class="nav-link">Stratégie</a>
+                <a href="#action" class="nav-link btn-nav">Lancer Maintenant</a>
+            </div>
+        </nav>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Analyse de trader professionnel
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">ATTEINDRE</span>
+                <span class="title-line highlight"><span class="currency">1 000</span>€ / JOUR</span>
+                <span class="title-line">AVEC SHOPIFY</span>
+            </h1>
+            <p class="hero-subtitle">
+                Analyse data-driven des marchés 2025-2026. identification des produits gagnants,
+                projections financières précises & plan d'attaque étape par étape.
+            </p>
+            <div class="hero-cta">
+                <a href="#calculator" class="btn btn-primary btn-lg">
+                    <span>Lancer l'analyse</span>
+                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#market-analysis" class="btn btn-secondary btn-lg">Voir les produits gagnants</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value">88%</div>
+                    <div class="stat-label">Marge moyenne produits gagnants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">$334K</div>
+                    <div class="stat-label">CA/mois produit #1 (Foot Warmer)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">70-80%</div>
+                    <div class="stat-label">Marges santé & wellness</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+            <span>Scroll pour analyser</span>
+        </div>
+    </section>
+
+    <!-- === MARKET ANALYSIS === -->
+    <section class="market-analysis" id="market-analysis">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">PHASE 1</span>
+                <h2 class="section-title">ANALYSE DU MARCHÉ <br><span class="accent">TRADER 2025-2026</span></h2>
+                <p class="section-desc">Identification systématique des catégories à haute rentabilité basée sur données réelles</p>
+            </div>
+
+            <!-- Market Matrix -->
+            <div class="market-matrix">
+                <div class="matrix-header">
+                    <div class="matrix-col">Catégorie</div>
+                    <div class="matrix-col text-center">Marge</div>
+                    <div class="matrix-col text-center">CA Potentiel</div>
+                    <div class="matrix-col text-center">Concurrence</div>
+                    <div class="matrix-col text-center">Score</div>
+                </div>
+
+                <div class="matrix-row winner" data-category="wellness">
+                    <div class="matrix-col category">
+                        <div class="category-icon">💊</div>
+                        <div class="category-info">
+                            <strong>Santé & Wellness</strong>
+                            <span class="subcategory">Lumbar, Eye Massager, Acupressure</span>
+                        </div>
+                        <div class="category-badge gold">TOP 1</div>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="margin-bar">
+                            <div class="bar-fill" style="--fill: 90%"></div>
+                        </div>
+                        <span class="value high">70-88%</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="revenue-bar">
+                            <div class="bar-fill" style="--fill: 85%"></div>
+                        </div>
+                        <span class="value">€€€€</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="competition-indicator medium"></div>
+                        <span>Moyenne</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="score-circle">98/100</div>
+                    </div>
+                </div>
+
+                <div class="matrix-row" data-category="pets">
+                    <div class="matrix-col category">
+                        <div class="category-icon">🐕</div>
+                        <div class="category-info">
+                            <strong>Produits pour Animaux</strong>
+                            <span class="subcategory">Toys interactifs, lits premium, tech</span>
+                        </div>
+                        <div class="category-badge silver">TOP 2</div>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="margin-bar">
+                            <div class="bar-fill" style="--fill: 78%"></div>
+                        </div>
+                        <span class="value high">55-75%</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="revenue-bar">
+                            <div class="bar-fill" style="--fill: 70%"></div>
+                        </div>
+                        <span class="value">€€€</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="competition-indicator high"></div>
+                        <span>Moyenne-Forte</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="score-circle">92/100</div>
+                    </div>
+                </div>
+
+                <div class="matrix-row" data-category="tech">
+                    <div class="matrix-col category">
+                        <div class="category-icon">📱</div>
+                        <div class="category-info">
+                            <strong>Tech Accessoires</strong>
+                            <span class="subcategory">CarPlay, Phone Mounts, Privacy Cases</span>
+                        </div>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="margin-bar">
+                            <div class="bar-fill" style="--fill: 65%"></div>
+                        </div>
+                        <span class="value medium">40-60%</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="revenue-bar">
+                            <div class="bar-fill" style="--fill: 80%"></div>
+                        </div>
+                        <span class="value">€€€€</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="competition-indicator very-high"></div>
+                        <span>Forte</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="score-circle">85/100</div>
+                    </div>
+                </div>
+
+                <div class="matrix-row" data-category="custom">
+                    <div class="matrix-col category">
+                        <div class="category-icon">💎</div>
+                        <div class="category-info">
+                            <strong>Produits Personnalisés</strong>
+                            <span class="subcategory">Bijoux gravés, décor custom, cadeaux</span>
+                        </div>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="margin-bar">
+                            <div class="bar-fill" style="--fill: 82%"></div>
+                        </div>
+                        <span class="value high">60-80%</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="revenue-bar">
+                            <div class="bar-fill" style="--fill: 60%"></div>
+                        </div>
+                        <span class="value">€€</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="competition-indicator low"></div>
+                        <span>Faible-Moyenne</span>
+                    </div>
+                    <div class="matrix-col text-center">
+                        <div class="score-circle">90/100</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Winning Products Table -->
+            <div class="products-showcase">
+                <h3 class="showcase-title">
+                    <span class="icon">🏆</span>
+                    PRODUITS GAGNANTS IDENTIFIÉS (Données Réelles Janvier 2025)
+                </h3>
+
+                <div class="products-grid">
+                    <div class="product-card featured" data-product="lumbar">
+                        <div class="product-rank">#1</div>
+                        <div class="product-image">
+                            <div class="image-placeholder lumbar-img"></div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Ultimate Lumbar Support</h4>
+                            <p class="product-desc">Siège ergonomique pour bureau/auto - résout douleurs chroniques dos</p>
+                            <div class="product-stats">
+                                <div class="stat">
+                                    <span class="stat-label">CA/mois</span>
+                                    <span class="stat-value">$108,161</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Marge</span>
+                                    <span class="stat-value success">88%</span>
+                                </div>
+                            </div>
+                            <div class="product-meta">
+                                <span class="tag">Santé</span>
+                                <span class="tag">Problème réel</span>
+                                <span class="tag">Repeat potential</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-product="nebulizer">
+                        <div class="product-rank">#2</div>
+                        <div class="product-image">
+                            <div class="image-placeholder nebulizer-img"></div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Handheld Nebulizer</h4>
+                            <p class="product-desc">Nébulisateur portable - santé respiratoire</p>
+                            <div class="product-stats">
+                                <div class="stat">
+                                    <span class="stat-label">CA/mois</span>
+                                    <span class="stat-value">$168,630</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Marge</span>
+                                    <span class="stat-value success">87%</span>
+                                </div>
+                            </div>
+                            <div class="product-meta">
+                                <span class="tag">Santé</span>
+                                <span class="tag">Urgence marché</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-product="foot-warmer">
+                        <div class="product-rank">#3</div>
+                        <div class="product-image">
+                            <div class="image-placeholder footwarmer-img"></div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Foldable Electric Foot Warmer</h4>
+                            <p class="product-desc">Chauffe-pieds pliable - hiver/wellness</p>
+                            <div class="product-stats">
+                                <div class="stat">
+                                    <span class="stat-label">CA/mois</span>
+                                    <span class="stat-value">$334,860</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Marge</span>
+                                    <span class="stat-value success">75%+</span>
+                                </div>
+                            </div>
+                            <div class="product-meta">
+                                <span class="tag">Saisonnalité hiver</span>
+                                <span class="tag">Volume élevé</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-product="lumbar-support">
+                        <div class="product-rank">★ RECOMMANDÉ</div>
+                        <div class="product-image">
+                            <div class="image-placeholder support-img"></div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Ultimate Lumbar Support</h4>
+                            <p class="product-desc">Notre recommandation #1 - solution problème réel, marge maximale</p>
+                            <div class="product-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Prix cible</span>
+                                    <span class="stat-value">45-65€</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Marge nette</span>
+                                    <span class="stat-value success">85%</span>
+                                </div>
+                            </div>
+                            <div class="product-meta">
+                                <span class="tag highlight">CHOIX TRADER</span>
+                                <span class="tag">Meilleur ROI</span>
+                                <span class="tag">Bundlable</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Insights -->
+            <div class="insights-box">
+                <div class="insights-header">
+                    <span class="icon">🔍</span>
+                    <h3>INSIGHTS TRADER - Ce Que Les Données Disent</h3>
+                </div>
+                <div class="insights-grid">
+                    <div class="insight">
+                        <div class="insight-icon">📈</div>
+                        <p><strong>Marché santé +22%</strong> post-COVID + télétravail = demande structurelle, pas cyclique</p>
+                    </div>
+                    <div class="insight">
+                        <div class="insight-icon">💰</div>
+                        <p><strong>Marge 85-88% = seuil rentabilité</strong> atteint avec seulement 4 ventes/mois pour couvrir frais fixes</p>
+                    </div>
+                    <div class="insight">
+                        <div class="insight-icon">🎯</div>
+                        <p><strong>Cible douleur = achat émotionnel</strong> - conversion 3-5x supérieure aux produits "wishlist"</p>
+                    </div>
+                    <div class="insight">
+                        <div class="insight-icon">🔄</div>
+                        <p><strong>Bundling naturel</strong> - Lumbar support + wrist rest + guide = panier moyen +40%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === CALCULATOR === -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">PHASE 2</span>
+                <h2 class="section-title">SIMULATEUR DE RENTABILITÉ <br><span class="accent">VERS 1K€/JOUR</span></h2>
+            </div>
+
+            <div class="calculator-container">
+                <div class="calc-inputs">
+                    <h3>Vos paramètres</h3>
+
+                    <div class="input-group">
+                        <label>Catégorie choisie</label>
+                        <select id="category-select">
+                            <option value="wellness">Santé & Wellness (Recommandé)</option>
+                            <option value="pets">Animaux</option>
+                            <option value="tech">Tech Accessoires</option>
+                            <option value="custom">Produits Personnalisés</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Prix de vente moyen (€)</label>
+                        <input type="number" id="price-input" value="45" min="10" max="200">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Marge nette (%)</label>
+                        <input type="number" id="margin-input" value="75" min="20" max="95">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Volume de ventes / jour</label>
+                        <input type="range" id="volume-slider" min="1" max="100" value="23">
+                        <span class="range-value" id="volume-value">23 ventes/jour</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Budget marketing mensuel (€)</label>
+                        <input type="number" id="marketing-budget" value="300" min="0" max="5000">
+                    </div>
+
+                    <button class="btn btn-primary calc-submit" onclick="calculateROI()">
+                        <span>Lancer simulation</span>
+                    </button>
+                </div>
+
+                <div class="calc-results">
+                    <h3>Projections financières</h3>
+
+                    <div class="result-cards">
+                        <div class="result-card">
+                            <div class="result-icon green">📈</div>
+                            <div class="result-content">
+                                <span class="result-label">Chiffre d'affaires mensuel</span>
+                                <span class="result-value" id="revenue-monthly">30 825€</span>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-icon blue">💵</div>
+                            <div class="result-content">
+                                <span class="result-label">Revenu net (après coûts)</span>
+                                <span class="result-value" id="net-profit">23 118€</span>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-icon orange">🎯</div>
+                            <div class="result-content">
+                                <span class="result-label">Objectif 1K€/jour</span>
+                                <span class="result-value" id="target-status">✅ ATTEINT</span>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <div class="result-icon purple">📦</div>
+                            <div class="result-content">
+                                <span class="result-label">Commandes / mois</span>
+                                <span class="result-value" id="orders-monthly">690</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="progress-section">
+                        <h4>Progression vers 1K€/jour</h4>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="target-progress"></div>
+                        </div>
+                        <div class="progress-labels">
+                            <span>Actuel: <span id="current-daily">1 062</span>€/jour</span>
+                            <span>Objectif: 1 000€/jour</span>
+                        </div>
+                    </div>
+
+                    <div class="breakdown-table">
+                        <h4>Détail des coûts</h4>
+                        <table>
+                            <tr>
+                                <td>CA mensuel</td>
+                                <td class="value green" id="ca-total">30 825€</td>
+                            </tr>
+                            <tr>
+                                <td>Coût des produits (25%)</td>
+                                <td class="value red">-7 706€</td>
+                            </tr>
+                            <tr>
+                                <td>Frais Shopify (2% + 0,25€)</td>
+                                <td class="value red">-616€</td>
+                            </tr>
+                            <tr>
+                                <td>Marketing</td>
+                                <td class="value red">-300€</td>
+                            </tr>
+                            <tr>
+                                <td>Apps/outils</td>
+                                <td class="value red">-100€</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td><strong>REVENU NET</strong></td>
+                                <td class="value success"><strong id="net-total">23 118€</strong></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="scaling-path">
+                        <h4>📊 Chemin de scaling recommandé</h4>
+                        <div class="path-timeline">
+                            <div class="path-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <strong>Mois 1-2</strong>
+                                    <span>10 ventes/jour → 450€/jour</span>
+                                    <span class="step-goal">Objectif: Test produits & optimisation</span>
+                                </div>
+                            </div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <strong>Mois 3-4</strong>
+                                    <span>23 ventes/jour → 1K€/jour</span>
+                                    <span class="step-goal">Objectif: Scaling ads stable</span>
+                                </div>
+                            </div>
+                            <div class="path-arrow">→</div>
+                            <div class="path-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <strong>Mois 5-6</strong>
+                                    <span>50 ventes/jour → 2.2K€/jour</span>
+                                    <span class="step-goal">Objectif: Expansion gamme produits</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === STRATEGY === -->
+    <section class="strategy" id="strategy">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">PHASE 3</span>
+                <h2 class="section-title">PLAN D'ATTAQUE <br><span class="accent">ÉTAPE PAR ÉTAPE</span></h2>
+            </div>
+
+            <div class="strategy-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="marker-number">01</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Setup Technique (Jours 1-3)</h3>
+                            <span class="duration">3 jours</span>
+                        </div>
+                        <ul class="timeline-tasks">
+                            <li><span class="task-check">✓</span> Création compte Shopify Basic (29€/mois)</li>
+                            <li><span class="task-check">✓</span> Installation thème Dawn + personnalisation</li>
+                            <li><span class="task-check">✓</span> Configuration paiements (Stripe/PayPal)</li>
+                            <li><span class="task-check">✓</span> Google Analytics + Facebook Pixel</li>
+                            <li><span class="task-check">✓</span> Pages légales (CGV RGPD)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="marker-number">02</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Produits & Approvisionnement (Jours 4-7)</h3>
+                            <span class="duration">4 jours</span>
+                        </div>
+                        <ul class="timeline-tasks">
+                            <li><span class="task-check">✓</span> Commande 4-5 produits winners (500-800€)</li>
+                            <li><span class="task-check">✓</span> Photographie produits (ou mockups pro)</li>
+                            <li><span class="task-check">✓</span> Rédaction descriptions optimisées conversion</li>
+                            <li><span class="task-check">✓</span> Configuration variants/prix/stock</li>
+                            <li><span class="task-check">✓</span> Création bundles (upsell +40% AOV)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="marker-number">03</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Design & Branding (Jours 8-10)</h3>
+                            <span class="duration">3 jours</span>
+                        </div>
+                        <ul class="timeline-tasks">
+                            <li><span class="task-check">✓</span> Header animé + hero section</li>
+                            <li><span class="task-check">✓</span> Page d'accueil avec sections UX</li>
+                            <li><span class="task-check">✓</span> Page produits optimisée (trust badges, UGC)</li>
+                            <li><span class="task-check">✓</span> Mobile-first vérification</li>
+                            <li><span class="task-check">✓</span> Optimisation vitesse Core Web Vitals</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="marker-number">04</span>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Marketing & Launch (Jours 11-14)</h3>
+                            <span class="duration">4 jours</span>
+                        </div>
+                        <ul class="timeline-tasks">
+                            <li><span class="task-check">✓</span> Création campagnes Facebook/Instagram Ads</li>
+                            <li><span class="task-check">✓</span> Setup TikTok organique (contenu UGC)</li>
+                            <li><span class="task-check">✓</span> Configuration emails automatiques</li>
+                            <li><span class="task-check">✓</span> Test A/B sur pages produits</li>
+                            <li><span class="task-check">✓</span> <strong>LANCEMENT OFFICIEL</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Success Factors -->
+            <div class="success-factors">
+                <h3><span class="icon">🎯</span> Facteurs Clés de Succès (Non-Négociables)</h3>
+                <div class="factors-grid">
+                    <div class="factor">
+                        <div class="factor-number">1</div>
+                        <h4>Produit problème réel</h4>
+                        <p>Vendre la solution, pas le produit. Douleur ≠ wishlist.</p>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-number">2</div>
+                        <h4>Marge ≥70%</h4>
+                        <p>Seuil minimum pour couvrir ads + scaling. En dessous = perte.</p>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-number">3</div>
+                        <h4>4-5 produits max au lancement</h4>
+                        <p>Focus sur best-sellers. Pas de catalogue dispersif.</p>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-number">4</div>
+                        <h4>Bundle/upsell dès jour 1</h4>
+                        <p>Panier moyen +35-50% = rentabilité accélérée.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === ACTION === -->
+    <section class="action" id="action">
+        <div class="container">
+            <div class="action-content">
+                <h2>PRÊT À LANCER VOTRE BOUTIQUE <span class="accent">1K€/JOUR</span> ?</h2>
+                <p>Choisissez votre catégorie et je crée tout le code Shopify sur mesure pour vous</p>
+
+                <div class="category-selector">
+                    <div class="cat-option selected" data-cat="wellness" onclick="selectCategory(this)">
+                        <div class="cat-icon">💊</div>
+                        <h4>Santé & Wellness</h4>
+                        <span class="cat-stat">Marge 70-88% | CA: €€€€</span>
+                        <span class="cat-badge">RECOMMANDÉ</span>
+                    </div>
+
+                    <div class="cat-option" data-cat="pets" onclick="selectCategory(this)">
+                        <div class="cat-icon">🐕</div>
+                        <h4>Animaux</h4>
+                        <span class="cat-stat">Marge 55-75% | CA: €€€</span>
+                    </div>
+
+                    <div class="cat-option" data-cat="tech" onclick="selectCategory(this)">
+                        <div class="cat-icon">📱</div>
+                        <h4>Tech Accessoires</h4>
+                        <span class="cat-stat">Marge 40-60% | CA: €€€€</span>
+                    </div>
+
+                    <div class="cat-option" data-cat="custom" onclick="selectCategory(this)">
+                        <div class="cat-icon">💎</div>
+                        <h4>Personnalisés</h4>
+                        <span class="cat-stat">Marge 60-80% | CA: €€</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary btn-xl" onclick="startProject()">
+                        <span>🚀 Démarrer ma boutique maintenant</span>
+                    </button>
+                    <button class="btn btn-outline btn-xl" onclick="downloadPlan()">
+                        <span>📄 Télécharger le plan complet</span>
+                    </button>
+                </div>
+
+                <p class="action-note">
+                    Je créerai pour vous : thème Shopify + pages produits + stratégie marketing + liste fournisseurs
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>Analyse basée sur données marché e-commerce 2025-2026 | Objectif: 1K€/jour</p>
+                <p class="disclaimer">⚠️ Les résultats varient selon l'exécution, le marketing et le marché. Aucune garantie de revenus.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for project start -->
+    <div class="modal" id="start-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h2>🚀 Lancement de votre projet</h2>
+            <p>Excellent choix ! Je vais créer votre boutique complète.</p>
+
+            <form id="start-form" onsubmit="submitProject(event)">
+                <div class="form-group">
+                    <label>Nom de votre boutique</label>
+                    <input type="text" id="shop-name" placeholder="ex: BackRelief.fr" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Votre email</label>
+                    <input type="email" id="user-email" placeholder="votre@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Budget de départ (€)</label>
+                    <select id="budget-select">
+                        <option value="500">500-700€</option>
+                        <option value="1000">1000-1500€</option>
+                        <option value="2000">2000-3000€</option>
+                        <option value="5000">5000€+</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Créer ma boutique maintenant
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
