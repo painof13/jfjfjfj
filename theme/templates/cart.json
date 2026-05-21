@@ -7,7 +7,7 @@
           "type": "announcement",
           "settings": {
             "icon": "🚚",
-            "text": "Livraison gratuite dès 30€"
+            "text": "Livraison gratuite"
           }
         },
         "block2": {
@@ -23,6 +23,10 @@
         "show_bar": true
       }
     },
+    "main_cart": {
+      "type": "main-cart",
+      "settings": {}
+    },
     "trust_strip": {
       "type": "trust-strip",
       "blocks": {
@@ -37,5 +41,5 @@
       "type": "footer"
     }
   },
-  "order": ["announcement", "trust_strip", "footer"]
+  "order": ["announcement", "main_cart", "trust_strip", "footer"]
 }

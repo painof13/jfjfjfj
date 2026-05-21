@@ -1,4 +1,5 @@
 {% assign current_product = product %}
+{% assign sticky_variant_id = current_product.variants.first.id | default: section.settings.fallback_variant_id %}
 
 <div
   class="sticky-atc"
@@ -39,7 +40,7 @@
     <button
       class="btn btn--accent btn--pulse"
       data-atc-btn
-      onclick="addToCart('{{ current_product.variants.first.id }}')"
+      onclick="addToCart('{{ sticky_variant_id }}')"
       aria-label="Ajouter {{ current_product.title }} au panier"
     >
       {{ section.settings.button_text | default: 'Ajouter au panier →' }}
@@ -66,6 +67,12 @@
       "max": 1200,
       "step": 50,
       "default": 600
+    },
+    {
+      "type": "text",
+      "id": "fallback_variant_id",
+      "label": "ID variante (si hors page produit)",
+      "default": "53957693014358"
     }
   ]
 }

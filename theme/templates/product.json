@@ -76,7 +76,8 @@
         "compare_price": "74,99 €",
         "stock_percent": 20,
         "stock_left": 3,
-        "atc_text": "Ajouter au panier →"
+        "atc_text": "Ajouter au panier →",
+        "fallback_variant_id": "53957693014358"
       }
     },
     "benefits": {

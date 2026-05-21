@@ -1,4 +1,5 @@
 {% assign current_product = section.settings.product | default: product %}
+{% assign variant_id = current_product.variants.first.id | default: section.settings.fallback_variant_id %}
 
 <section class="hero-product" aria-label="Présentation produit">
 
@@ -106,7 +107,7 @@
       <button
         class="btn btn--accent btn--full btn--pulse"
         data-atc-btn
-        onclick="addToCart('{{ current_product.variants.first.id }}')"
+        onclick="addToCart('{{ variant_id }}')"
         aria-label="Ajouter au panier — {{ current_product.title }}"
       >
         {{ section.settings.atc_text | default: 'Ajouter au panier →' }}
@@ -222,6 +223,12 @@
       "id": "atc_text",
       "label": "Texte bouton ATC",
       "default": "Ajouter au panier →"
+    },
+    {
+      "type": "text",
+      "id": "fallback_variant_id",
+      "label": "ID variante (si section hors page produit)",
+      "info": "Copiez l'ID numérique de la variante depuis Admin Shopify → Produits → URL de la variante"
     }
   ],
   "blocks": [

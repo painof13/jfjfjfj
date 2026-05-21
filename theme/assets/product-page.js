@@ -1,54 +1,49 @@
-/* ============================================================
-   GLAMBRUSH — Product Page JS
-   Cart interactions + Animations + Countdown
-   ============================================================ */
-
 'use strict';
 
 /* ──────────────────────────────────────────
    1. Add To Cart
    ────────────────────────────────────────── */
 async function addToCart(variantId, quantity = 1) {
+  if (!variantId) {
+    window.location.href = '/cart';
+    return;
+  }
+
   const buttons = document.querySelectorAll('[data-atc-btn]');
 
   buttons.forEach(btn => {
     btn.classList.add('loading');
     btn.disabled = true;
     btn.setAttribute('data-original', btn.innerHTML);
-    btn.innerHTML = '';
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin .7s linear infinite"><path d="M12 2a10 10 0 0 1 10 10"/></svg>';
   });
 
   try {
     const response = await fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: variantId, quantity })
+      body: JSON.stringify({ id: parseInt(variantId, 10), quantity })
     });
 
-    if (!response.ok) throw new Error(`Cart error: ${response.status}`);
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.description || `Cart error ${response.status}`);
+    }
 
-    const item = await response.json();
+    await response.json();
 
     buttons.forEach(btn => {
       btn.classList.remove('loading');
       btn.classList.add('success');
-      btn.innerHTML = `
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>
-        Ajouté au panier !`;
+      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Ajouté !`;
     });
 
     updateCartCount();
-    showToast('Produit ajouté à votre panier 🎉');
 
+    /* Redirect to checkout for best conversion on single-product stores */
     setTimeout(() => {
-      buttons.forEach(btn => {
-        btn.classList.remove('success');
-        btn.disabled = false;
-        btn.innerHTML = btn.getAttribute('data-original') || 'Ajouter au panier →';
-      });
-    }, 2500);
+      window.location.href = '/checkout';
+    }, 800);
 
   } catch (error) {
     buttons.forEach(btn => {
@@ -56,6 +51,7 @@ async function addToCart(variantId, quantity = 1) {
       btn.disabled = false;
       btn.innerHTML = btn.getAttribute('data-original') || 'Ajouter au panier →';
     });
+    showToast('Erreur : ' + error.message);
     console.error('Cart error:', error);
   }
 }
@@ -68,13 +64,11 @@ async function updateCartCount() {
     const res = await fetch('/cart.js');
     const cart = await res.json();
     const count = cart.item_count;
-    const badge = document.querySelector('[data-cart-count]');
-    if (!badge) return;
-    badge.textContent = count;
-    badge.classList.toggle('visible', count > 0);
-  } catch (e) {
-    /* silent */
-  }
+    document.querySelectorAll('[data-cart-count]').forEach(badge => {
+      badge.textContent = count > 0 ? count : '';
+      badge.classList.toggle('visible', count > 0);
+    });
+  } catch (e) { /* silent */ }
 }
 
 /* ──────────────────────────────────────────
@@ -83,9 +77,7 @@ async function updateCartCount() {
 function initStickyATC() {
   const bar = document.querySelector('[data-sticky-atc]');
   if (!bar) return;
-
   const threshold = parseInt(bar.dataset.threshold || 600, 10);
-
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (ticking) return;
@@ -101,41 +93,52 @@ function initStickyATC() {
    4. Countdown Timer
    ────────────────────────────────────────── */
 function startCountdown(endTime) {
-  const el = document.querySelector('[data-countdown]');
-  if (!el) return;
+  const hEl = document.querySelector('[data-h]');
+  const mEl = document.querySelector('[data-m]');
+  const sEl = document.querySelector('[data-s]');
+  if (!hEl && !mEl && !sEl) return;
+
+  const pad = n => String(n).padStart(2, '0');
 
   function render() {
     const diff = endTime - Date.now();
     if (diff <= 0) {
-      el.closest('[data-urgency-bar]')?.remove();
+      document.querySelector('[data-urgency-bar]')?.remove();
       return;
     }
-
     const h = Math.floor(diff / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
 
-    const hEl = el.querySelector('[data-h]');
-    const mEl = el.querySelector('[data-m]');
-    const sEl = el.querySelector('[data-s]');
-
-    const pad = n => String(n).padStart(2, '0');
-
-    if (hEl && hEl.textContent !== pad(h)) { hEl.textContent = pad(h); hEl.classList.add('countdown-tick'); setTimeout(() => hEl.classList.remove('countdown-tick'), 300); }
-    if (mEl && mEl.textContent !== pad(m)) { mEl.textContent = pad(m); mEl.classList.add('countdown-tick'); setTimeout(() => mEl.classList.remove('countdown-tick'), 300); }
-    if (sEl) { sEl.textContent = pad(s); }
+    if (hEl && hEl.textContent !== pad(h)) {
+      hEl.textContent = pad(h);
+      hEl.classList.add('countdown-tick');
+      setTimeout(() => hEl.classList.remove('countdown-tick'), 300);
+    }
+    if (mEl && mEl.textContent !== pad(m)) {
+      mEl.textContent = pad(m);
+      mEl.classList.add('countdown-tick');
+      setTimeout(() => mEl.classList.remove('countdown-tick'), 300);
+    }
+    if (sEl) sEl.textContent = pad(s);
   }
 
   render();
   setInterval(render, 1000);
 }
 
-/* Auto-init countdown from data attribute */
 function initCountdown() {
   const el = document.querySelector('[data-countdown]');
   if (!el) return;
   const hours = parseInt(el.dataset.hours || 3, 10);
-  const endTime = Date.now() + hours * 3600000;
+
+  /* Persist end time in sessionStorage so refresh doesn't reset the clock */
+  const key = 'gb_countdown_end';
+  let endTime = parseInt(sessionStorage.getItem(key) || '0', 10);
+  if (!endTime || endTime < Date.now()) {
+    endTime = Date.now() + hours * 3600000;
+    sessionStorage.setItem(key, endTime);
+  }
   startCountdown(endTime);
 }
 
@@ -147,7 +150,6 @@ function initReveal() {
     document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('revealed'));
     return;
   }
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -155,8 +157,7 @@ function initReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
 }
 
@@ -167,26 +168,20 @@ function initGallery() {
   const thumbs = document.querySelectorAll('[data-gallery-thumb]');
   const main   = document.querySelector('[data-gallery-main]');
   if (!thumbs.length || !main) return;
-
   thumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
-      const src    = thumb.dataset.src;
-      const srcset = thumb.dataset.srcset || '';
-      const alt    = thumb.dataset.alt || '';
-
       const img = main.querySelector('img');
       if (img) {
         img.style.opacity = '0';
         img.style.transform = 'scale(0.97)';
         setTimeout(() => {
-          img.src = src;
-          if (srcset) img.srcset = srcset;
-          img.alt = alt;
+          img.src = thumb.dataset.src;
+          if (thumb.dataset.srcset) img.srcset = thumb.dataset.srcset;
+          img.alt = thumb.dataset.alt || '';
           img.style.opacity = '';
           img.style.transform = '';
-        }, 200);
+        }, 180);
       }
-
       thumbs.forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
     });
@@ -200,17 +195,16 @@ function initFAQ() {
   document.querySelectorAll('[data-faq-item]').forEach(item => {
     const btn = item.querySelector('[data-faq-question]');
     if (!btn) return;
-
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
-
-      /* Close all others */
       document.querySelectorAll('[data-faq-item].open').forEach(o => {
-        if (o !== item) o.classList.remove('open');
+        if (o !== item) {
+          o.classList.remove('open');
+          o.querySelector('[data-faq-question]')?.setAttribute('aria-expanded', 'false');
+        }
       });
-
       item.classList.toggle('open', !isOpen);
-      btn.setAttribute('aria-expanded', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
     });
   });
 }
@@ -243,11 +237,9 @@ function showToast(message) {
       <span class="toast__msg"></span>`;
     document.body.appendChild(toast);
   }
-
   toast.querySelector('.toast__msg').textContent = message;
   toast.classList.remove('hide');
   toast.classList.add('show');
-
   clearTimeout(toast._timer);
   toast._timer = setTimeout(() => {
     toast.classList.remove('show');
@@ -259,8 +251,7 @@ function showToast(message) {
    10. Stock bar animation
    ────────────────────────────────────────── */
 function initStockBar() {
-  const fills = document.querySelectorAll('[data-stock-fill]');
-  fills.forEach(fill => {
+  document.querySelectorAll('[data-stock-fill]').forEach(fill => {
     const pct = fill.dataset.stockFill || '25';
     setTimeout(() => { fill.style.width = pct + '%'; }, 400);
   });
@@ -280,7 +271,6 @@ function initRatingBars() {
       obs.unobserve(entry.target);
     });
   }, { threshold: 0.3 });
-
   document.querySelectorAll('.rating-overview').forEach(el => obs.observe(el));
 }
 
