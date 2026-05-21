@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "block1": {
+          "type": "announcement",
+          "settings": {
+            "text": "🚚 Livraison gratuite",
+            "url": ""
+          }
+        },
+        "block2": {
+          "type": "announcement",
+          "settings": {
+            "text": "↩️ Retour 30 jours",
+            "url": ""
+          }
+        },
+        "block3": {
+          "type": "announcement",
+          "settings": {
+            "text": "🔒 Paiement sécurisé",
+            "url": ""
+          }
+        }
+      },
+      "block_order": ["block1", "block2", "block3"]
+    },
+    "collection_header": {
+      "type": "final-cta",
+      "settings": {
+        "eyebrow": "Notre collection",
+        "title": "Tous nos produits GlamBrush",
+        "subtitle": "Des outils beauté pensés pour simplifier votre routine maquillage.",
+        "primary_text": "Voir le produit phare",
+        "secondary_text": ""
+      }
+    },
+    "trust_strip": {
+      "type": "trust-strip"
+    },
+    "footer": {
+      "type": "footer"
+    }
+  },
+  "order": ["announcement", "collection_header", "trust_strip", "footer"]
+}

@@ -1,0 +1,323 @@
+{
+  "sections": {
+    "urgency_bar": {
+      "type": "urgency-bar",
+      "settings": {
+        "show_bar": true,
+        "emoji": "🔥",
+        "message": "Offre Lancement — Seulement quelques unités restantes !",
+        "show_countdown": true,
+        "countdown_hours": 4,
+        "cta_text": "J'en profite"
+      }
+    },
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "block1": {
+          "type": "announcement",
+          "settings": {
+            "icon": "🚚",
+            "text": "Livraison gratuite"
+          }
+        },
+        "block2": {
+          "type": "announcement",
+          "settings": {
+            "icon": "↩️",
+            "text": "Retour 30 jours"
+          }
+        },
+        "block3": {
+          "type": "announcement",
+          "settings": {
+            "icon": "🔒",
+            "text": "Paiement sécurisé"
+          }
+        }
+      },
+      "block_order": ["block1", "block2", "block3"],
+      "settings": {
+        "show_bar": true
+      }
+    },
+    "hero": {
+      "type": "hero-product",
+      "blocks": {
+        "badge1": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "🚚",
+            "text": "Livraison offerte"
+          }
+        },
+        "badge2": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "↩️",
+            "text": "Retour 30j"
+          }
+        },
+        "badge3": {
+          "type": "trust_badge",
+          "settings": {
+            "icon": "🔒",
+            "text": "100% sécurisé"
+          }
+        }
+      },
+      "block_order": ["badge1", "badge2", "badge3"],
+      "settings": {
+        "badge_text": "Offre Lancement — Stock Limité",
+        "headline": "Propre en 30 secondes.<br>Parfait à chaque fois.",
+        "subtitle": "Le premier nettoyeur de pinceaux électrique USB 3-en-1 : nettoyage profond, séchage automatique et rangement intégré.",
+        "rating_value": "4.9",
+        "review_count": "247",
+        "compare_price": "74,99 €",
+        "stock_percent": 20,
+        "stock_left": 3,
+        "atc_text": "Ajouter au panier →"
+      }
+    },
+    "benefits": {
+      "type": "benefits",
+      "blocks": {
+        "benefit1": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "⚡",
+            "title": "Nettoyage en 30 secondes",
+            "text": "La rotation à 360° élimine fond de teint, fard et mascara en quelques secondes. Fini les pinceaux sales entre deux looks.",
+            "highlight": "10x plus rapide"
+          }
+        },
+        "benefit2": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "💨",
+            "title": "Séchage automatique",
+            "text": "La force centrifuge expulse l'eau instantanément. Vos pinceaux sont secs et prêts à utiliser en 10 secondes.",
+            "highlight": "Prêt en 10s"
+          }
+        },
+        "benefit3": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "🎨",
+            "title": "Compatible tous pinceaux",
+            "text": "8 adaptateurs inclus pour tous les types et tailles de pinceaux. Du pinceau kabuki aux pinceaux yeux les plus fins.",
+            "highlight": "8 adaptateurs inclus"
+          }
+        },
+        "benefit4": {
+          "type": "benefit",
+          "settings": {
+            "emoji": "🔋",
+            "title": "Recharge USB-C",
+            "text": "Batterie longue durée rechargeable via USB-C. Utilisez-le chez vous ou en déplacement, sans contrainte.",
+            "highlight": "Sans fil"
+          }
+        }
+      },
+      "block_order": ["benefit1", "benefit2", "benefit3", "benefit4"]
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "blocks": {
+        "step1": {
+          "type": "step",
+          "settings": {
+            "emoji": "💧",
+            "title": "Humidifiez",
+            "description": "Quelques gouttes d'eau + une noisette de shampooing pour pinceaux."
+          }
+        },
+        "step2": {
+          "type": "step",
+          "settings": {
+            "emoji": "⚡",
+            "title": "Activez",
+            "description": "Insérez votre pinceau, appuyez sur le bouton. La rotation fait tout le travail."
+          }
+        },
+        "step3": {
+          "type": "step",
+          "settings": {
+            "emoji": "✨",
+            "title": "Profitez",
+            "description": "Séchage centrifuge en 10 secondes. Pinceau propre, sec, prêt à l'emploi."
+          }
+        }
+      },
+      "block_order": ["step1", "step2", "step3"]
+    },
+    "social_proof": {
+      "type": "social-proof",
+      "blocks": {
+        "review1": {
+          "type": "review",
+          "settings": {
+            "name": "Sophie M.",
+            "date": "Il y a 2 jours",
+            "rating": 5,
+            "verified": true,
+            "text": "Absolument incroyable ! J'avais des pinceaux que je n'avais pas lavés depuis des mois par flemme, et en 30 secondes ils étaient parfaitement propres et secs."
+          }
+        },
+        "review2": {
+          "type": "review",
+          "settings": {
+            "name": "Camille R.",
+            "date": "Il y a 1 semaine",
+            "rating": 5,
+            "verified": true,
+            "text": "Je recommande les yeux fermés. La rotation nettoie vraiment en profondeur, pas juste en surface. Et le séchage centrifuge c'est magique !"
+          }
+        },
+        "review3": {
+          "type": "review",
+          "settings": {
+            "name": "Léa P.",
+            "date": "Il y a 3 jours",
+            "rating": 5,
+            "verified": true,
+            "text": "Cadeau idéal pour toutes les maquillées ! J'en ai offert un à ma sœur et elle m'a déjà demandé d'où ça venait."
+          }
+        },
+        "review4": {
+          "type": "review",
+          "settings": {
+            "name": "Emma D.",
+            "date": "Il y a 5 jours",
+            "rating": 5,
+            "verified": true,
+            "text": "Mes pinceaux Artis à 40€ pièce méritaient mieux. Avec GlamBrush ils sont enfin traités comme il faut."
+          }
+        },
+        "review5": {
+          "type": "review",
+          "settings": {
+            "name": "Julie T.",
+            "date": "Il y a 2 semaines",
+            "rating": 5,
+            "verified": true,
+            "text": "Je suis make-up artist professionnelle et je l'utilise entre chaque client. Gain de temps inestimable. J'en ai commandé 2 !"
+          }
+        },
+        "review6": {
+          "type": "review",
+          "settings": {
+            "name": "Anaïs V.",
+            "date": "Il y a 4 jours",
+            "rating": 4,
+            "verified": true,
+            "text": "Très satisfaite globalement. L'adaptateur XS est un peu délicat à clipper mais le résultat de nettoyage est impeccable !"
+          }
+        }
+      },
+      "block_order": ["review1", "review2", "review3", "review4", "review5", "review6"],
+      "settings": {
+        "avg_rating": "4.9",
+        "total_reviews": "247",
+        "monthly_count": "847"
+      }
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Combien de temps dure le nettoyage ?",
+            "answer": "<p>En moyenne 30 secondes par pinceau. Le moteur à rotation rapide élimine toutes les traces de maquillage en un seul passage.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Est-il compatible avec tous mes pinceaux ?",
+            "answer": "<p>Oui ! Le kit inclut <strong>8 adaptateurs</strong> de tailles différentes, compatibles avec 99% des pinceaux du marché.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Faut-il un shampoing spécial ?",
+            "answer": "<p>Non, n'importe quel shampoing doux pour pinceaux fonctionne. Vous pouvez aussi utiliser du savon de Marseille.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Les pinceaux sont-ils vraiment secs après ?",
+            "answer": "<p>Oui ! La force centrifuge expulse 95% de l'eau. En <strong>10-15 secondes</strong> de séchage rotatif, vos pinceaux sont secs et prêts à utiliser.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Quelle est l'autonomie de la batterie ?",
+            "answer": "<p>Environ <strong>2 heures</strong> d'utilisation continue. La recharge via USB-C prend 1h30.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "Y a-t-il un risque d'abîmer mes pinceaux ?",
+            "answer": "<p>Non, la vitesse de rotation est calibrée pour nettoyer en profondeur sans endommager les soies. Convient même pour les pinceaux premium.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "Quelle est la politique de retour ?",
+            "answer": "<p>Satisfaite ou remboursée pendant <strong>30 jours</strong>. Retournez le produit dans son emballage d'origine pour un remboursement intégral.</p>"
+          }
+        },
+        "q8": {
+          "type": "question",
+          "settings": {
+            "question": "Quel est le délai de livraison ?",
+            "answer": "<p>Livraison standard en <strong>3-5 jours ouvrés</strong>. Vous recevez un email de confirmation avec numéro de suivi dès l'expédition.</p>"
+          }
+        }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"]
+    },
+    "final_cta": {
+      "type": "final-cta",
+      "settings": {
+        "eyebrow": "Rejoignez 847 clientes ce mois",
+        "title": "Prête pour des pinceaux impeccables ?",
+        "subtitle": "Profitez de l'offre lancement avant qu'elle expire. Livraison gratuite. Retour 30 jours.",
+        "primary_text": "Commander maintenant — 24,99 €",
+        "secondary_text": "Voir les avis"
+      }
+    },
+    "trust_strip": {
+      "type": "trust-strip",
+      "blocks": {
+        "ts1": { "type": "item", "settings": { "emoji": "⚡", "title": "Livraison Express", "subtitle": "3-5 jours ouvrés" } },
+        "ts2": { "type": "item", "settings": { "emoji": "🔒", "title": "Paiement Sécurisé", "subtitle": "SSL 256 bits" } },
+        "ts3": { "type": "item", "settings": { "emoji": "↩️", "title": "Retour Gratuit", "subtitle": "30 jours sans tracas" } },
+        "ts4": { "type": "item", "settings": { "emoji": "⭐", "title": "4.9/5 étoiles", "subtitle": "247 avis vérifiés" } }
+      },
+      "block_order": ["ts1", "ts2", "ts3", "ts4"]
+    },
+    "footer": {
+      "type": "footer"
+    }
+  },
+  "order": [
+    "urgency_bar",
+    "announcement",
+    "hero",
+    "benefits",
+    "how_it_works",
+    "social_proof",
+    "faq",
+    "final_cta",
+    "trust_strip",
+    "footer"
+  ]
+}

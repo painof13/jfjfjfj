@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "block1": {
+          "type": "announcement",
+          "settings": {
+            "icon": "🚚",
+            "text": "Livraison gratuite dès 30€"
+          }
+        }
+      },
+      "block_order": ["block1"],
+      "settings": {
+        "show_bar": true
+      }
+    },
+    "trust_strip": {
+      "type": "trust-strip",
+      "blocks": {
+        "ts1": { "type": "item", "settings": { "emoji": "⚡", "title": "Livraison Express", "subtitle": "3-5 jours ouvrés" } },
+        "ts2": { "type": "item", "settings": { "emoji": "🔒", "title": "Paiement Sécurisé", "subtitle": "SSL 256 bits" } },
+        "ts3": { "type": "item", "settings": { "emoji": "↩️", "title": "Retour Gratuit", "subtitle": "30 jours sans tracas" } },
+        "ts4": { "type": "item", "settings": { "emoji": "⭐", "title": "4.9/5 étoiles", "subtitle": "247 avis vérifiés" } }
+      },
+      "block_order": ["ts1", "ts2", "ts3", "ts4"]
+    },
+    "footer": {
+      "type": "footer"
+    }
+  },
+  "order": ["announcement", "trust_strip", "footer"]
+}

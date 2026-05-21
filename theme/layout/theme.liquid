@@ -116,13 +116,7 @@
   <!-- Skip to main content (accessibilité) -->
   <a class="skip-link sr-only" href="#main-content">Aller au contenu principal</a>
 
-  <!-- Urgency Bar -->
-  {% section 'urgency-bar' %}
-
-  <!-- Announcement Bar -->
-  {% section 'announcement-bar' %}
-
-  <!-- Header -->
+  <!-- Header (global) -->
   {% section 'header' %}
 
   <!-- Main Content -->
@@ -130,13 +124,10 @@
     {{ content_for_layout }}
   </main>
 
-  <!-- Sticky ATC -->
-  {% if template contains 'product' %}
+  <!-- Sticky ATC (product pages only) -->
+  {% if template contains 'product' or template.name == 'index' %}
     {% section 'sticky-atc' %}
   {% endif %}
-
-  <!-- Footer -->
-  {% section 'footer' %}
 
   <!-- Toast notification container -->
   <div aria-live="polite" aria-atomic="true" class="sr-only" id="cart-live-region"></div>
