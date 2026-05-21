@@ -1,0 +1,93 @@
+{% if section.settings.show_bar %}
+<div class="urgency-bar" data-urgency-bar>
+  <span>{{ section.settings.emoji }} {{ section.settings.message }}</span>
+
+  {% if section.settings.show_countdown %}
+    <div class="urgency-bar__countdown">
+      <div class="countdown-unit">
+        <span class="countdown-number" data-h>03</span>
+        <span class="countdown-label">h</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-number" data-m>47</span>
+        <span class="countdown-label">m</span>
+      </div>
+      <span class="countdown-sep">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-number" data-s>22</span>
+        <span class="countdown-label">s</span>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if section.settings.cta_text != blank %}
+    <a href="{{ section.settings.cta_url }}" style="text-decoration:underline;font-weight:700;color:var(--color-accent);">
+      {{ section.settings.cta_text }} →
+    </a>
+  {% endif %}
+</div>
+
+<div
+  data-countdown
+  data-hours="{{ section.settings.countdown_hours }}"
+  style="display:none"
+></div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Urgency Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Afficher la barre",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "emoji",
+      "label": "Emoji",
+      "default": "🔥"
+    },
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Message urgence",
+      "default": "Il ne reste que 3 en stock — Offre lancement -67%"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Afficher le compte à rebours",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "countdown_hours",
+      "label": "Durée compte à rebours (heures)",
+      "min": 1,
+      "max": 24,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texte CTA (optionnel)",
+      "default": "Profiter maintenant"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Lien CTA"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Urgency Bar"
+    }
+  ]
+}
+{% endschema %}

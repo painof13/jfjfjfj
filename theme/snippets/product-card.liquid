@@ -1,0 +1,125 @@
+{% comment %}
+  Params:
+  - card_product: product object
+  - show_vendor: boolean
+  - show_rating: boolean
+{% endcomment %}
+
+{% assign card = card_product %}
+
+<article class="product-card" aria-label="{{ card.title }}">
+  <a href="{{ card.url }}" class="product-card__media" aria-hidden="true" tabindex="-1">
+    {% if card.featured_image %}
+      <img
+        src="{{ card.featured_image | img_url: '600x' }}"
+        srcset="{{ card.featured_image | img_url: '375x' }} 375w, {{ card.featured_image | img_url: '600x' }} 600w"
+        sizes="(max-width: 480px) 100vw, 300px"
+        alt="{{ card.featured_image.alt | default: card.title }}"
+        width="600"
+        height="750"
+        loading="lazy"
+      >
+      {% if card.images[1] %}
+        <img
+          src="{{ card.images[1] | img_url: '600x' }}"
+          alt="{{ card.title }} — vue alternative"
+          width="600"
+          height="750"
+          loading="lazy"
+          class="product-card__media-hover"
+        >
+      {% endif %}
+    {% else %}
+      <div class="product-card__placeholder" aria-hidden="true">💄</div>
+    {% endif %}
+
+    {% if card.compare_at_price > card.price %}
+      <span class="product-card__badge">
+        -{{ card.compare_at_price | minus: card.price | times: 100 | divided_by: card.compare_at_price }}%
+      </span>
+    {% endif %}
+  </a>
+
+  <div class="product-card__info">
+    {% if show_vendor and card.vendor != blank %}
+      <span class="product-card__vendor eyebrow">{{ card.vendor }}</span>
+    {% endif %}
+
+    <h3 class="product-card__title">
+      <a href="{{ card.url }}">{{ card.title }}</a>
+    </h3>
+
+    {% if show_rating %}
+      <div class="product-card__rating" style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+        {% render 'star-rating', rating: 5, size: 'sm' %}
+        <span style="font-size:var(--text-xs);color:var(--color-text-muted);">(247)</span>
+      </div>
+    {% endif %}
+
+    <div class="product-card__price">
+      <span class="price-current" style="font-size:var(--text-lg);">{{ card.price | money }}</span>
+      {% if card.compare_at_price > card.price %}
+        <span class="price-original" style="font-size:var(--text-sm);">{{ card.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+
+    <button
+      class="btn btn--primary btn--full"
+      style="margin-top:14px;"
+      onclick="addToCart('{{ card.variants.first.id }}')"
+      aria-label="Ajouter {{ card.title }} au panier"
+    >
+      Ajouter au panier
+    </button>
+  </div>
+</article>
+
+<style>
+  .product-card {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--duration);
+  }
+  .product-card:hover { box-shadow: var(--shadow-md); }
+
+  .product-card__media {
+    display: block;
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: var(--color-accent-light);
+  }
+  .product-card__media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: opacity 0.3s, transform 0.5s var(--ease-out);
+  }
+  .product-card__media-hover {
+    position: absolute; inset: 0;
+    opacity: 0;
+  }
+  .product-card__media:hover img:first-of-type { opacity: 0; }
+  .product-card__media:hover .product-card__media-hover { opacity: 1; }
+  .product-card__media:hover img { transform: scale(1.04); }
+
+  .product-card__badge {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--color-accent-strong);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+  }
+  .product-card__placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+  }
+  .product-card__info { padding: 20px; }
+  .product-card__vendor { display: block; margin-bottom: 6px; }
+  .product-card__title { font-size: var(--text-base); font-family: var(--font-display); font-weight: 700; margin-bottom: 8px; }
+  .product-card__title a:hover { color: var(--color-accent-strong); }
+  .product-card__price { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+</style>

@@ -1,0 +1,72 @@
+{% assign current_product = product %}
+
+<div
+  class="sticky-atc"
+  data-sticky-atc
+  data-threshold="{{ section.settings.scroll_threshold | default: 600 }}"
+  role="complementary"
+  aria-label="Ajouter au panier rapide"
+>
+  <div class="sticky-atc__inner">
+
+    <div class="sticky-atc__product">
+      {% if current_product.featured_image %}
+        <img
+          src="{{ current_product.featured_image | img_url: '60x60' }}"
+          alt="{{ current_product.featured_image.alt | default: current_product.title }}"
+          width="52"
+          height="52"
+          loading="lazy"
+        >
+      {% endif %}
+      <div>
+        <span class="sticky-atc__title">{{ current_product.title | default: 'GlamBrush USB 3-en-1' }}</span>
+        <span class="sticky-atc__price">
+          {% if current_product.price %}
+            {{ current_product.price | money }}
+          {% else %}
+            24,99 €
+          {% endif %}
+          {% if current_product.compare_at_price > current_product.price %}
+            <span style="font-size:var(--text-xs);color:rgba(253,250,248,.4);text-decoration:line-through;font-weight:400;font-family:var(--font-body);">
+              {{ current_product.compare_at_price | money }}
+            </span>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+
+    <button
+      class="btn btn--accent btn--pulse"
+      data-atc-btn
+      onclick="addToCart('{{ current_product.variants.first.id }}')"
+      aria-label="Ajouter {{ current_product.title }} au panier"
+    >
+      {{ section.settings.button_text | default: 'Ajouter au panier →' }}
+    </button>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sticky Add to Cart",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texte du bouton",
+      "default": "Ajouter au panier →"
+    },
+    {
+      "type": "range",
+      "id": "scroll_threshold",
+      "label": "Apparaît après X pixels de scroll",
+      "min": 100,
+      "max": 1200,
+      "step": 50,
+      "default": 600
+    }
+  ]
+}
+{% endschema %}

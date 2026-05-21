@@ -1,0 +1,15 @@
+{% comment %}
+  Params:
+  - variant: 'light' | 'dark' (default: 'dark')
+  - center: true | false
+{% endcomment %}
+
+{% assign badge_variant = variant | default: 'dark' %}
+{% assign center_class  = center  | default: false %}
+
+<div class="trust-badges{% if badge_variant == 'light' %} trust-badges--light{% endif %}{% if center_class %}" style="justify-content:center;{% endif %}">
+  <div class="trust-badge">🚚 Livraison gratuite</div>
+  <div class="trust-badge">↩️ Retour 30 jours</div>
+  <div class="trust-badge">🔒 Paiement sécurisé</div>
+  <div class="trust-badge">⭐ 4.9/5 — 247 avis</div>
+</div>

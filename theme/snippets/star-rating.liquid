@@ -1,0 +1,35 @@
+{% comment %}
+  Params:
+  - rating: number (1-5, decimals ok)
+  - size: 'sm' | '' | 'lg'
+{% endcomment %}
+
+{% assign rating_value = rating | default: 5 | plus: 0 %}
+{% assign size_class = size | default: '' %}
+
+<div class="stars stars--{{ size_class }}" role="img" aria-label="Note : {{ rating_value }} étoiles sur 5">
+  {% for i in (1..5) %}
+    {% if i <= rating_value %}
+      <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="0" aria-hidden="true">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    {% elsif i == rating_value | ceil and rating_value != rating_value | floor %}
+      <!-- Demi étoile -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" style="position:relative;">
+        <defs>
+          <linearGradient id="half-{{ forloop.index }}-{{ rating_value | replace: '.', '' }}">
+            <stop offset="50%" stop-color="var(--color-star)"/>
+            <stop offset="50%" stop-color="transparent"/>
+          </linearGradient>
+        </defs>
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+          fill="url(#half-{{ forloop.index }}-{{ rating_value | replace: '.', '' }})"
+          stroke="var(--color-star)" stroke-width="1.5"/>
+      </svg>
+    {% else %}
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-star)" stroke-width="1.5" aria-hidden="true">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    {% endif %}
+  {% endfor %}
+</div>

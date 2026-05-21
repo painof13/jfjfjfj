@@ -1,0 +1,140 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "GlamBrush Premium",
+    "theme_version": "1.0.0",
+    "theme_author": "GlamBrush",
+    "theme_documentation_url": "https://glambrush.fr/docs",
+    "theme_support_url": "mailto:dev@glambrush.fr"
+  },
+  {
+    "name": "Couleurs",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Couleur principale",
+        "default": "#1A1A1A"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Couleur accentuation douce",
+        "default": "#E8C4B8"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_strong",
+        "label": "Couleur accentuation forte (or rosé)",
+        "default": "#C9956A"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Fond général",
+        "default": "#FDFAF8"
+      },
+      {
+        "type": "color",
+        "id": "color_bg_dark",
+        "label": "Fond sombre",
+        "default": "#161616"
+      },
+      {
+        "type": "color",
+        "id": "color_success",
+        "label": "Couleur succès",
+        "default": "#2D6A4F"
+      }
+    ]
+  },
+  {
+    "name": "Typographie",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_display",
+        "label": "Police titres (Display)",
+        "default": "playfair_display_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Police corps (Body)",
+        "default": "dm_sans_n4"
+      },
+      {
+        "type": "range",
+        "id": "body_font_size",
+        "label": "Taille police corps (base, px)",
+        "min": 14,
+        "max": 20,
+        "step": 1,
+        "default": 16
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Réseaux sociaux",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok",
+        "label": "TikTok"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube",
+        "label": "YouTube"
+      }
+    ]
+  },
+  {
+    "name": "Recherche prédictive",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_predictive_search",
+        "label": "Activer la recherche prédictive",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Performance",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "lazy_load_images",
+        "label": "Lazy load images",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "animate_on_scroll",
+        "label": "Animations au scroll",
+        "default": true
+      }
+    ]
+  }
+]

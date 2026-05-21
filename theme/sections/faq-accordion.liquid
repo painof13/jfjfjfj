@@ -1,0 +1,178 @@
+<section class="faq-section section" aria-labelledby="faq-title">
+  <div class="container">
+
+    <div class="faq-section__header" data-reveal>
+      <p class="eyebrow">{{ section.settings.eyebrow | default: 'On répond à tout' }}</p>
+      <h2 id="faq-title" class="heading-lg" style="margin-top:12px;">
+        {{ section.settings.title | default: 'Questions fréquentes' }}
+      </h2>
+    </div>
+
+    <div class="faq-list" role="list">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'question' %}
+            <div
+              class="faq-item"
+              data-faq-item
+              data-reveal
+              data-delay="{{ forloop.index }}"
+              role="listitem"
+              {{ block.shopify_attributes }}
+            >
+              <button
+                class="faq-question"
+                data-faq-question
+                aria-expanded="false"
+                aria-controls="faq-answer-{{ block.id }}"
+                id="faq-btn-{{ block.id }}"
+              >
+                {{ block.settings.question }}
+                <div class="faq-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </div>
+              </button>
+
+              <div
+                class="faq-answer"
+                id="faq-answer-{{ block.id }}"
+                role="region"
+                aria-labelledby="faq-btn-{{ block.id }}"
+              >
+                <div class="faq-answer__inner">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.cta_text != blank %}
+      <div style="text-align:center;margin-top:var(--space-md);" data-reveal>
+        <p style="color:var(--color-text-muted);margin-bottom:16px;">Vous avez d'autres questions ?</p>
+        <a href="{{ section.settings.cta_url | default: 'mailto:bonjour@glambrush.fr' }}" class="btn btn--outline">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ Accordion",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre",
+      "default": "On répond à tout"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre section",
+      "default": "Questions fréquentes"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texte CTA bas de section",
+      "default": "Contacter le support"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Lien CTA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Comment fonctionne le nettoyeur ?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Réponse",
+          "default": "<p>Insérez simplement votre pinceau dans l'adaptateur, plongez dans l'eau savonneuse et activez la rotation. En moins de 30 secondes, votre pinceau est nettoyé en profondeur.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Accordion",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "Comment fonctionne le nettoyeur de pinceaux électrique ?",
+            "answer": "<p>C'est très simple ! Insérez votre pinceau dans l'un des 8 adaptateurs fournis selon la taille, plongez-le dans un verre d'eau avec une petite goutte de savon doux, appuyez sur le bouton et laissez la rotation à 360° faire le travail. En 10 secondes vos pinceaux sont lavés. Ensuite, sortez-les de l'eau et la centrifugeuse les sèche automatiquement en 20 secondes. Total : propre et sec en <strong>moins de 30 secondes</strong>.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Est-il compatible avec tous mes pinceaux ?",
+            "answer": "<p>Oui ! GlamBrush est livré avec <strong>8 colliers adaptateurs</strong> de tailles différentes pour s'adapter à la quasi-totalité des pinceaux du marché : du plus petit pinceau eyeliner (2mm) aux grands pinceaux poudre bronzante (25mm). Compatible avec toutes les marques : Charlotte Tilbury, Morphe, Real Techniques, MAC, Lancôme, Sephora, etc.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Comment se recharge-t-il ?",
+            "answer": "<p>Via le câble USB-C inclus — le même que votre smartphone ! Une charge complète prend environ <strong>1h30</strong> et dure plusieurs semaines d'utilisation normale (2-3 lavages par semaine). Un voyant LED indique le niveau de batterie.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "L'eau peut-elle endommager le moteur ?",
+            "answer": "<p>Non, le moteur est entièrement isolé et imperméable. Seule la partie basse (le collier et le pinceau) est en contact avec l'eau. Le corps de l'appareil reste hors de l'eau. Il est conçu pour résister aux projections et à l'humidité.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Puis-je l'utiliser pour pinceaux synthétiques ET naturels ?",
+            "answer": "<p>Absolument. La rotation douce préserve aussi bien les poils synthétiques que les poils naturels (chèvre, martre, poney). Les professionnels du maquillage utilisent GlamBrush quotidiennement sur leurs collections de pinceaux premium.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Quelle est votre politique de retour ?",
+            "answer": "<p>Vous disposez de <strong>30 jours</strong> pour retourner votre GlamBrush si vous n'êtes pas 100% satisfaite, sans justification. Le remboursement est effectué sous 5 jours ouvrés. Les frais de retour sont à notre charge.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Combien de temps dure la livraison ?",
+            "answer": "<p>Livraison en <strong>3 à 5 jours ouvrés</strong> en France métropolitaine. Expédié sous 24h (jours ouvrés) dès réception de votre commande. Vous recevrez un email de suivi avec numéro de tracking.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Y a-t-il une garantie ?",
+            "answer": "<p>Oui ! GlamBrush est garanti <strong>1 an</strong> contre tout défaut de fabrication. En cas de problème, notre service client vous envoie un remplacement sous 48h, sans tracas.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

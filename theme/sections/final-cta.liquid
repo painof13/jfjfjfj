@@ -1,0 +1,97 @@
+<section class="final-cta section" aria-labelledby="final-cta-title">
+  <div class="container">
+    <div class="final-cta__content">
+
+      <p class="eyebrow" data-reveal style="color:var(--color-accent);">
+        {{ section.settings.eyebrow | default: 'Rejoignez 847 clientes ce mois' }}
+      </p>
+
+      <h2 id="final-cta-title" class="final-cta__title" data-reveal data-delay="2">
+        {{ section.settings.title | default: 'Prête pour des pinceaux <em>impeccables</em> ?' }}
+      </h2>
+
+      <p class="final-cta__sub" data-reveal data-delay="3">
+        {{ section.settings.subtitle | default: 'Profitez de l\'offre lancement -67% avant qu\'elle expire. Livraison gratuite. Retour 30 jours.' }}
+      </p>
+
+      <div class="final-cta__actions" data-reveal data-delay="4">
+        <a
+          href="{{ section.settings.primary_url | default: '#product' }}"
+          class="btn btn--accent btn--lg btn--pulse"
+        >
+          {{ section.settings.primary_text | default: 'Commander maintenant — 24,99 €' }}
+        </a>
+        {% if section.settings.secondary_text != blank %}
+          <a
+            href="{{ section.settings.secondary_url | default: '#faq' }}"
+            class="btn btn--outline-light"
+          >
+            {{ section.settings.secondary_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Mini trust -->
+      <div style="display:flex;gap:24px;justify-content:center;margin-top:32px;flex-wrap:wrap;" data-reveal data-delay="5">
+        <span style="color:rgba(253,250,248,.5);font-size:var(--text-xs);">🚚 Livraison gratuite</span>
+        <span style="color:rgba(253,250,248,.5);font-size:var(--text-xs);">↩️ Retour 30 jours</span>
+        <span style="color:rgba(253,250,248,.5);font-size:var(--text-xs);">🔒 Paiement 100% sécurisé</span>
+        <span style="color:rgba(253,250,248,.5);font-size:var(--text-xs);">⭐ 4.9/5 — 247 avis</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Final",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre",
+      "default": "Rejoignez 847 clientes ce mois"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Titre (HTML autorisé pour <em>)",
+      "default": "Prête pour des pinceaux impeccables ?"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Profitez de l'offre lancement -67% avant qu'elle expire."
+    },
+    {
+      "type": "text",
+      "id": "primary_text",
+      "label": "Texte bouton principal",
+      "default": "Commander maintenant — 24,99 €"
+    },
+    {
+      "type": "url",
+      "id": "primary_url",
+      "label": "Lien bouton principal"
+    },
+    {
+      "type": "text",
+      "id": "secondary_text",
+      "label": "Texte bouton secondaire (optionnel)",
+      "default": "Voir les avis"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Lien bouton secondaire"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Final"
+    }
+  ]
+}
+{% endschema %}

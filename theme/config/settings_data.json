@@ -1,0 +1,14 @@
+{
+  "current": {
+    "color_primary": "#1A1A1A",
+    "color_accent": "#E8C4B8",
+    "color_accent_strong": "#C9956A",
+    "color_bg": "#FDFAF8",
+    "color_bg_dark": "#161616",
+    "color_success": "#2D6A4F",
+    "body_font_size": 16,
+    "show_predictive_search": true,
+    "lazy_load_images": true,
+    "animate_on_scroll": true
+  }
+}

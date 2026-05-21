@@ -1,0 +1,155 @@
+<section class="how-it-works section" aria-labelledby="hiw-title">
+  <div class="container">
+
+    <div class="how-it-works__header" data-reveal>
+      <p class="eyebrow">{{ section.settings.eyebrow | default: 'Simple comme bonjour' }}</p>
+      <h2 id="hiw-title" class="heading-lg" style="color:#fff;margin-top:12px;">
+        {{ section.settings.title | default: 'Propre en 3 gestes' }}
+      </h2>
+      <p class="subheading" style="margin-top:8px;">{{ section.settings.subtitle | default: 'Une routine beauté transformée' }}</p>
+    </div>
+
+    <div class="how-it-works__grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'step' %}
+            <div class="step-card" data-reveal data-delay="{{ forloop.index }}" {{ block.shopify_attributes }}>
+
+              <div class="step-card__number" aria-hidden="true">{{ forloop.index }}</div>
+
+              <div class="step-card__visual" aria-hidden="true">
+                {% if block.settings.image %}
+                  <img
+                    src="{{ block.settings.image | img_url: '300x' }}"
+                    alt="{{ block.settings.title }}"
+                    width="160"
+                    height="120"
+                    loading="lazy"
+                    style="object-fit:contain;"
+                  >
+                {% else %}
+                  {{ block.settings.emoji | default: '✨' }}
+                {% endif %}
+              </div>
+
+              <h3 class="step-card__title">{{ block.settings.title }}</h3>
+              <p class="step-card__text">{{ block.settings.description }}</p>
+
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.cta_text != blank %}
+      <div style="text-align:center;margin-top:var(--space-lg);" data-reveal>
+        <a
+          href="{{ section.settings.cta_url | default: '#product' }}"
+          class="btn btn--accent btn--lg"
+        >
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comment ça marche",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre",
+      "default": "Simple comme bonjour"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre section",
+      "default": "Propre en 3 gestes"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Sous-titre",
+      "default": "Une routine beauté transformée"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texte bouton CTA",
+      "default": "Essayer maintenant"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Lien bouton CTA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Illustration (optionnel)"
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji (si pas d'image)",
+          "default": "✨"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titre de l'étape",
+          "default": "Insérez vos pinceaux"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Choisissez l'adaptateur adapté à votre pinceau parmi les 8 fournis."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comment ça marche",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "emoji": "🖌️",
+            "title": "Insérez vos pinceaux",
+            "description": "Choisissez l'adaptateur adapté à votre pinceau parmi les 8 colliers fournis et fixez-le en 2 secondes."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "emoji": "💧",
+            "title": "Nettoyage en 10s",
+            "description": "Plongez dans l'eau savonneuse, activez la rotation à 360°. Le moteur puissant chasse toutes les impuretés."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "emoji": "✨",
+            "title": "Séchage automatique",
+            "description": "Sortez de l'eau et regardez la centrifugeuse éjecter l'eau en 20 secondes. Prêt à utiliser immédiatement."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,118 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div>
+        <div class="footer-logo">Glam<span>Brush</span></div>
+        <p class="footer-tagline">
+          {{ section.settings.tagline | default: 'Le nettoyeur de pinceaux professionnel pour toutes les passionnées de beauté. Propre en 30 secondes, à chaque fois.' }}
+        </p>
+
+        <!-- Social links -->
+        <div style="display:flex;gap:12px;margin-top:24px;">
+          {% if section.settings.instagram != blank %}
+            <a href="{{ section.settings.instagram }}" aria-label="Instagram" style="width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(201,149,106,.3)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+          {% endif %}
+          {% if section.settings.tiktok != blank %}
+            <a href="{{ section.settings.tiktok }}" aria-label="TikTok" style="width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(201,149,106,.3)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.08a8.25 8.25 0 004.84 1.56V7.19a4.87 4.87 0 01-1.07-.5z"/></svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Links 1 -->
+      <div class="footer-col">
+        <div class="footer-col__title">Produit</div>
+        {% for link in linklists[section.settings.menu_product].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% else %}
+          <a href="/products">Notre nettoyeur</a>
+          <a href="#how-it-works">Comment ça marche</a>
+          <a href="#reviews">Avis clients</a>
+          <a href="#faq">FAQ</a>
+        {% endfor %}
+      </div>
+
+      <!-- Links 2 -->
+      <div class="footer-col">
+        <div class="footer-col__title">Aide</div>
+        {% for link in linklists[section.settings.menu_help].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% else %}
+          <a href="/pages/livraison">Livraison & retours</a>
+          <a href="/pages/contact">Contact</a>
+          <a href="/pages/faq">FAQ</a>
+          <a href="/pages/garantie">Garantie</a>
+        {% endfor %}
+      </div>
+
+      <!-- Links 3 -->
+      <div class="footer-col">
+        <div class="footer-col__title">Légal</div>
+        {% for link in linklists[section.settings.menu_legal].links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% else %}
+          <a href="/policies/privacy-policy">Confidentialité</a>
+          <a href="/policies/terms-of-service">CGV</a>
+          <a href="/policies/refund-policy">Remboursement</a>
+          <a href="/policies/legal-notice">Mentions légales</a>
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <span>© {{ 'now' | date: '%Y' }} GlamBrush. Tous droits réservés.</span>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <!-- Payment icons placeholder -->
+        <span style="font-size:11px;opacity:0.4;">Visa · Mastercard · PayPal · Apple Pay</span>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "tagline",
+      "label": "Tagline marque",
+      "default": "Le nettoyeur de pinceaux professionnel pour toutes les passionnées de beauté. Propre en 30 secondes, à chaque fois."
+    },
+    {
+      "type": "url",
+      "id": "instagram",
+      "label": "URL Instagram"
+    },
+    {
+      "type": "url",
+      "id": "tiktok",
+      "label": "URL TikTok"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_product",
+      "label": "Menu Produit"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_help",
+      "label": "Menu Aide"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_legal",
+      "label": "Menu Légal"
+    }
+  ]
+}
+{% endschema %}

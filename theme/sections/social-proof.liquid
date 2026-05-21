@@ -1,0 +1,271 @@
+<section class="reviews-section section" aria-labelledby="reviews-title">
+  <div class="container">
+
+    <div class="reviews-section__header" data-reveal>
+      <p class="eyebrow">{{ section.settings.eyebrow | default: 'Elles l\'adorent' }}</p>
+      <h2 id="reviews-title" class="heading-lg" style="margin-top:12px;">
+        {{ section.settings.title | default: 'Ce que nos clientes disent' }}
+      </h2>
+    </div>
+
+    <!-- Rating Overview -->
+    <div class="rating-overview" data-reveal data-delay="2">
+      <div class="rating-big">
+        <div class="rating-big__score">{{ section.settings.avg_rating | default: '4.9' }}</div>
+        {% render 'star-rating', rating: section.settings.avg_rating, size: 'lg' %}
+        <div class="rating-big__label">{{ section.settings.total_reviews | default: '247' }} avis vérifiés</div>
+      </div>
+
+      <div class="rating-bars">
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">5★</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" data-rating-fill="89" style="width:0%"></div></div>
+          <span class="rating-bar-count">89%</span>
+        </div>
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">4★</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" data-rating-fill="8" style="width:0%"></div></div>
+          <span class="rating-bar-count">8%</span>
+        </div>
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">3★</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" data-rating-fill="2" style="width:0%"></div></div>
+          <span class="rating-bar-count">2%</span>
+        </div>
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">2★</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" data-rating-fill="1" style="width:0%"></div></div>
+          <span class="rating-bar-count">1%</span>
+        </div>
+        <div class="rating-bar-row">
+          <span class="rating-bar-label">1★</span>
+          <div class="rating-bar-track"><div class="rating-bar-fill" data-rating-fill="0" style="width:0%"></div></div>
+          <span class="rating-bar-count">0%</span>
+        </div>
+      </div>
+
+      <div class="reviews-counter">
+        <div class="reviews-counter__number">{{ section.settings.monthly_count | default: '847' }}</div>
+        <div class="reviews-counter__label">clientes satisfaites<br>ce mois</div>
+      </div>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="trust-badges trust-badges--light" style="justify-content:center;margin-bottom:var(--space-md);" data-reveal data-delay="3">
+      <div class="trust-badge">🚚 Livraison gratuite</div>
+      <div class="trust-badge">↩️ Retour 30 jours</div>
+      <div class="trust-badge">🔒 Paiement sécurisé</div>
+      <div class="trust-badge">⭐ 4.9/5 certifié</div>
+    </div>
+
+    <!-- Reviews Masonry -->
+    <div class="reviews-masonry">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'review' %}
+            <div class="review-card" data-reveal {{ block.shopify_attributes }}>
+              <div class="review-card__header">
+                <div class="review-card__avatar" aria-hidden="true">
+                  {% if block.settings.avatar %}
+                    <img
+                      src="{{ block.settings.avatar | img_url: '88x88' }}"
+                      alt="{{ block.settings.name }}"
+                      width="44"
+                      height="44"
+                      loading="lazy"
+                    >
+                  {% else %}
+                    {{ block.settings.name | upcase | slice: 0 }}
+                  {% endif %}
+                </div>
+                <div>
+                  <div class="review-card__name">{{ block.settings.name }}</div>
+                  <div class="review-card__date">{{ block.settings.date | default: 'Il y a 2 jours' }}</div>
+                </div>
+                <div style="margin-left:auto;">
+                  {% render 'star-rating', rating: block.settings.rating | default: 5, size: 'sm' %}
+                </div>
+              </div>
+
+              {% if block.settings.verified %}
+                <div class="review-card__verified">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                  Achat vérifié
+                </div>
+              {% endif %}
+
+              <p class="review-card__text" style="margin-top:12px;">{{ block.settings.text }}</p>
+
+              {% if block.settings.photo %}
+                <img
+                  class="review-card__photo"
+                  src="{{ block.settings.photo | img_url: '400x' }}"
+                  alt="Photo de {{ block.settings.name }}"
+                  width="400"
+                  height="300"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Avis clients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Sur-titre",
+      "default": "Elles l'adorent"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titre section",
+      "default": "Ce que nos clientes disent"
+    },
+    {
+      "type": "text",
+      "id": "avg_rating",
+      "label": "Note moyenne (ex: 4.9)",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "total_reviews",
+      "label": "Nombre total d'avis",
+      "default": "247"
+    },
+    {
+      "type": "text",
+      "id": "monthly_count",
+      "label": "Clientes satisfaites ce mois",
+      "default": "847"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Avis client",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Photo profil"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Prénom",
+          "default": "Marie L."
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "Il y a 3 jours"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Note (étoiles)",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Achat vérifié",
+          "default": true
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texte de l'avis",
+          "default": "Incroyable ! Mes pinceaux sont propres en moins de 30 secondes. Je ne peux plus m'en passer !"
+        },
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo UGC (optionnel)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avis clients",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "name": "Sophie M.",
+            "date": "Il y a 2 jours",
+            "rating": 5,
+            "verified": true,
+            "text": "Absolument incroyable ! J'avais des pinceaux que je n'avais pas lavés depuis des mois par flemme, et en 30 secondes ils étaient parfaitement propres et secs. Un investissement qui vaut chaque centime !"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Camille R.",
+            "date": "Il y a 1 semaine",
+            "rating": 5,
+            "verified": true,
+            "text": "Je recommande les yeux fermés. La rotation nettoie vraiment en profondeur, pas juste en surface. Et le séchage centrifuge c'est magique, aucune trace d'humidité restante."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Léa P.",
+            "date": "Il y a 3 jours",
+            "rating": 5,
+            "verified": true,
+            "text": "Cadeau idéal pour toutes les maquillées ! J'en ai offert un à ma sœur et elle m'a déjà demandé d'où ça venait. Le packaging est aussi très joli."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Emma D.",
+            "date": "Il y a 5 jours",
+            "rating": 5,
+            "verified": true,
+            "text": "Mes pinceaux Artis à 40€ pièce méritaient mieux que mon gant de lavage. Avec GlamBrush ils sont enfin traités comme il faut. Résultat : application du fond de teint bien plus uniforme."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Julie T.",
+            "date": "Il y a 2 semaines",
+            "rating": 5,
+            "verified": true,
+            "text": "Je suis make-up artist professionnelle et je l'utilise entre chaque client. Gain de temps inestimable. J'en ai commandé 2 !"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "name": "Anaïs V.",
+            "date": "Il y a 4 jours",
+            "rating": 4,
+            "verified": true,
+            "text": "Très satisfaite globalement. Le seul petit bémol c'est que l'adaptateur XS pour les pinceaux yeux fins est un peu délicat à clipper. Mais le résultat de nettoyage est impeccable !"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta -->
+  <title>{{ page_title }} | GlamBrush — Nettoyeur Pinceaux Pro</title>
+  <meta name="description" content="{{ page_description | default: 'Nettoyeur de pinceaux électrique USB 3-en-1. Propre et sec en 30 secondes. Livraison gratuite. -67% offre lancement.' }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page_title }} | GlamBrush">
+  <meta property="og:description" content="{{ page_description | default: 'Nettoyeur de pinceaux électrique USB 3-en-1.' }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  {% if product.featured_image %}
+    <meta property="og:image" content="{{ product.featured_image | img_url: '1200x630' }}">
+  {% else %}
+    <meta property="og:image" content="{{ 'og-default.jpg' | asset_url }}">
+  {% endif %}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ page_description }}">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <!-- Favicon -->
+  {% if settings.favicon %}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+  {% endif %}
+
+  <!-- Preconnect & DNS prefetch pour performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//cdn.shopify.com">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=DM+Sans:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Préchargement image hero critique -->
+  {% if section.settings.hero_image %}
+    <link rel="preload" as="image" href="{{ section.settings.hero_image | img_url: '1440x' }}" fetchpriority="high">
+  {% endif %}
+
+  <!-- Styles critiques -->
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+  {{ 'animations.css' | asset_url | stylesheet_tag }}
+
+  <!-- Structured Data produit -->
+  {% if template contains 'product' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": {{ product.title | escape | json }},
+      "image": "{{ product.featured_image | img_url: '1200x' }}",
+      "description": {{ product.description | strip_html | truncate: 160 | escape | json }},
+      "brand": {
+        "@type": "Brand",
+        "name": "GlamBrush"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "{{ product.url | prepend: shop.url }}",
+        "price": "{{ product.price | money_without_currency | remove: ',' }}",
+        "priceCurrency": "EUR",
+        "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+        "seller": { "@type": "Organization", "name": {{ shop.name | json }} }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "{{ product.metafields.reviews.count | default: 247 }}"
+      }
+    }
+    </script>
+  {% endif %}
+
+  <!-- FAQ Structured Data -->
+  {% if template contains 'index' or template contains 'product' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment fonctionne le nettoyeur de pinceaux électrique ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Insérez simplement votre pinceau dans l'adaptateur correspondant, plongez-le dans l'eau savonneuse, activez la rotation à 360° et en 30 secondes votre pinceau est propre et sec."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Est-il compatible avec tous les types de pinceaux ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui, GlamBrush est livré avec 8 colliers adaptateurs différents pour s'adapter à tous les pinceaux du marché, des plus petits eyeliners aux grands pinceaux fond de teint."
+          }
+        }
+      ]
+    }
+    </script>
+  {% endif %}
+
+  {{ content_for_header }}
+</head>
+
+<body class="template-{{ template.name }}{% if customer %} customer-logged-in{% endif %}">
+
+  <!-- Skip to main content (accessibilité) -->
+  <a class="skip-link sr-only" href="#main-content">Aller au contenu principal</a>
+
+  <!-- Urgency Bar -->
+  {% section 'urgency-bar' %}
+
+  <!-- Announcement Bar -->
+  {% section 'announcement-bar' %}
+
+  <!-- Header -->
+  {% section 'header' %}
+
+  <!-- Main Content -->
+  <main id="main-content" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  <!-- Sticky ATC -->
+  {% if template contains 'product' %}
+    {% section 'sticky-atc' %}
+  {% endif %}
+
+  <!-- Footer -->
+  {% section 'footer' %}
+
+  <!-- Toast notification container -->
+  <div aria-live="polite" aria-atomic="true" class="sr-only" id="cart-live-region"></div>
+
+  <!-- Scripts non-critiques en defer -->
+  <script>document.documentElement.classList.remove('no-js');</script>
+  {{ 'product-page.js' | asset_url | script_tag }}
+
+  <!-- Shopify standard scripts -->
+  {% if settings.show_predictive_search %}
+    {{ 'predictive-search.js' | asset_url | script_tag }}
+  {% endif %}
+
+</body>
+</html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 8px;
+    z-index: 9999;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .skip-link:focus {
+    left: 8px;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>

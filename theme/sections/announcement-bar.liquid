@@ -1,0 +1,89 @@
+{% if section.settings.show_bar %}
+<div class="announcement-bar">
+  <div class="announcement-bar__inner">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'announcement' %}
+          <span {{ block.shopify_attributes }}>
+            {% if block.settings.icon != blank %}{{ block.settings.icon }} {% endif %}
+            {% if block.settings.link != blank %}
+              <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+            {% else %}
+              {{ block.settings.text }}
+            {% endif %}
+          </span>
+          {% unless forloop.last %}
+            <span class="announcement-bar__separator">|</span>
+          {% endunless %}
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_bar",
+      "label": "Afficher la barre",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Annonce",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icône",
+          "default": "🚚"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texte",
+          "default": "Livraison gratuite dès 30€"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Lien (optionnel)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "🚚",
+            "text": "Livraison gratuite dès 30€"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "⭐",
+            "text": "-67% offre lancement"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "↩️",
+            "text": "Retour gratuit 30 jours"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

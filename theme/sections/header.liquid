@@ -1,0 +1,153 @@
+<header class="site-header" role="banner">
+  <div class="container">
+    <div class="header-inner">
+
+      <!-- Logo -->
+      <a href="{{ routes.root_url }}" class="site-logo" aria-label="{{ shop.name }} — Accueil">
+        {% if section.settings.logo %}
+          <img
+            src="{{ section.settings.logo | img_url: '200x' }}"
+            alt="{{ shop.name }}"
+            width="120"
+            height="40"
+            loading="eager"
+          >
+        {% else %}
+          Glam<span>Brush</span>
+        {% endif %}
+      </a>
+
+      <!-- Navigation desktop -->
+      <nav class="nav-links" aria-label="Navigation principale">
+        {% for link in linklists[section.settings.menu].links %}
+          <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>
+            {{ link.title }}
+          </a>
+        {% endfor %}
+      </nav>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        {% if section.settings.show_search %}
+          <button
+            class="cart-icon"
+            aria-label="Rechercher"
+            onclick="document.querySelector('.search-modal')?.classList.toggle('open')"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </button>
+        {% endif %}
+
+        <a href="{{ routes.cart_url }}" class="cart-icon" aria-label="Panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 01-8 0"></path>
+          </svg>
+          <span class="cart-count" data-cart-count aria-label="Nombre d'articles dans le panier"></span>
+        </a>
+
+        <a href="{{ routes.cart_url }}" class="btn btn--primary btn--sm" style="display:none" id="header-atc-btn">
+          {{ section.settings.cta_text | default: 'Commander' }}
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        class="hamburger"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        onclick="document.querySelector('.mobile-nav')?.classList.toggle('open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');"
+        style="display:none"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<nav class="mobile-nav" aria-label="Navigation mobile" role="navigation">
+  <div class="mobile-nav__inner">
+    {% for link in linklists[section.settings.menu].links %}
+      <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+    {% endfor %}
+    <div class="mobile-nav__divider"></div>
+    {% if customer %}
+      <a href="{{ routes.account_url }}" class="mobile-nav__link">Mon compte</a>
+      <a href="{{ routes.account_logout_url }}" class="mobile-nav__link">Déconnexion</a>
+    {% else %}
+      <a href="{{ routes.account_login_url }}" class="mobile-nav__link">Connexion</a>
+    {% endif %}
+  </div>
+</nav>
+
+<style>
+  .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    #header-atc-btn { display: none !important; }
+  }
+  .mobile-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(253,250,248,0.98);
+    backdrop-filter: blur(20px);
+    z-index: 95;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 80px var(--gutter) 40px;
+  }
+  .mobile-nav.open { transform: translateX(0); }
+  .mobile-nav__link {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+    transition: color 0.2s;
+  }
+  .mobile-nav__link:hover { color: var(--color-accent-strong); }
+  .mobile-nav__divider { height: 32px; }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu principal",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Afficher la recherche",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texte bouton CTA header",
+      "default": "Commander"
+    }
+  ]
+}
+{% endschema %}
