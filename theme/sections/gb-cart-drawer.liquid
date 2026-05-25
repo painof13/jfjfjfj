@@ -1,0 +1,121 @@
+<!-- GlamBrush Cart Drawer -->
+<div id="gb-overlay" class="gb-overlay" aria-hidden="true"></div>
+
+<div
+  id="gb-cart"
+  class="gb-cart"
+  role="dialog"
+  aria-label="Votre panier"
+  aria-modal="true"
+  aria-hidden="true"
+>
+  <!-- Header -->
+  <div class="gb-cart__head">
+    <div class="gb-cart__title">
+      Votre panier
+      <span id="gb-cart-count" class="gb-cart__count" {% if cart.item_count == 0 %}style="display:none"{% endif %}>
+        {{ cart.item_count }}
+      </span>
+    </div>
+    <button
+      class="gb-cart__close"
+      onclick="closeGbCart()"
+      aria-label="Fermer le panier"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Free shipping bar -->
+  <div class="gb-shipping">
+    <p id="gb-ship-label">
+      {%- assign total_euros = cart.total_price | divided_by: 100.0 -%}
+      {%- if total_euros >= 30 -%}
+        🎉 Livraison gratuite débloquée !
+      {%- else -%}
+        Plus que {{ 30.0 | minus: total_euros | money }} pour la livraison gratuite
+      {%- endif -%}
+    </p>
+    <div class="gb-shipping__track">
+      <div
+        id="gb-ship-fill"
+        class="gb-shipping__fill"
+        style="width: {{ cart.total_price | divided_by: 3000.0 | times: 100 | at_most: 100 | round }}%"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Items -->
+  <div id="gb-items" class="gb-cart__items">
+    {%- if cart.item_count == 0 -%}
+      <div class="gb-cart__empty">
+        <div class="gb-cart__empty-icon">🛒</div>
+        <p>Votre panier est vide</p>
+        <a href="/collections/all" onclick="closeGbCart()">Continuer mes achats →</a>
+      </div>
+    {%- else -%}
+      {%- for item in cart.line_items -%}
+        <div class="gb-line">
+          {%- if item.image -%}
+            <img
+              class="gb-line__img"
+              src="{{ item.image | img_url: '120x120' }}"
+              alt="{{ item.title | escape }}"
+              loading="lazy"
+            >
+          {%- else -%}
+            <div class="gb-line__ph">🛍️</div>
+          {%- endif -%}
+          <div class="gb-line__body">
+            <div class="gb-line__title">{{ item.product.title }}</div>
+            {%- unless item.variant.title == 'Default Title' -%}
+              <div class="gb-line__variant">{{ item.variant.title }}</div>
+            {%- endunless -%}
+            <div class="gb-line__row">
+              <div class="gb-qty">
+                <button onclick="gbQty('{{ item.key }}', {{ item.quantity | minus: 1 }})" aria-label="Diminuer">−</button>
+                <span class="gb-qty__n">{{ item.quantity }}</span>
+                <button onclick="gbQty('{{ item.key }}', {{ item.quantity | plus: 1 }})" aria-label="Augmenter">+</button>
+              </div>
+              <span class="gb-line__price">{{ item.line_price | money }}</span>
+              <button class="gb-rm" onclick="gbQty('{{ item.key }}', 0)" aria-label="Supprimer">✕</button>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  <!-- Footer -->
+  <div class="gb-cart__footer">
+    <div class="gb-subtotal">
+      <span class="gb-subtotal__label">Sous-total</span>
+      <span id="gb-subtotal-price" class="gb-subtotal__price">{{ cart.total_price | money }}</span>
+    </div>
+    <p class="gb-subtotal__note">Taxes et livraison calculées à la commande</p>
+    <a
+      id="gb-checkout-btn"
+      href="/checkout"
+      class="gb-checkout-btn"
+    >
+      Commander — {{ cart.total_price | money }}
+    </a>
+    <div class="gb-cart__icons">
+      <span class="gb-payment-badge">VISA</span>
+      <span class="gb-payment-badge">Mastercard</span>
+      <span class="gb-payment-badge">PayPal</span>
+      <span class="gb-payment-badge">🍎 Pay</span>
+      <span class="gb-payment-badge">G Pay</span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "GB Cart Drawer",
+  "settings": []
+}
+{% endschema %}

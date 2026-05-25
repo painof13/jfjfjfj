@@ -1,0 +1,103 @@
+<section class="gb-packs gb-reveal" data-d="1">
+  <p class="gb-packs__eyebrow">Choisissez votre formule</p>
+  <h2 class="gb-packs__title">🎁 Profitez de l'offre lancement</h2>
+
+  <div class="gb-packs__grid">
+
+    <!-- Essentiel -->
+    <div
+      class="gb-pack-card"
+      onclick="gbPickPack(this, '53957693014358')"
+      role="radio"
+      aria-checked="false"
+      tabindex="0"
+    >
+      <div class="gb-pack-name">Essentiel</div>
+      <ul class="gb-pack-items">
+        <li>GlamBrush USB 3-en-1</li>
+        <li>8 adaptateurs inclus</li>
+      </ul>
+      <div>
+        <span class="gb-pack-price">24,99&nbsp;€</span>
+      </div>
+    </div>
+
+    <!-- Pack Duo -->
+    <div
+      class="gb-pack-card"
+      onclick="gbPickPack(this, '53992941879638')"
+      role="radio"
+      aria-checked="false"
+      tabindex="0"
+    >
+      <div class="gb-pack-name">Pack Duo ✨</div>
+      <ul class="gb-pack-items">
+        <li>GlamBrush USB 3-en-1</li>
+        <li>8 adaptateurs inclus</li>
+        <li>Shampooing Bio 150ml&nbsp;<span class="gift">offert</span></li>
+      </ul>
+      <div>
+        <span class="gb-pack-price">29,99&nbsp;€</span>
+        <span class="gb-pack-compare">34,98&nbsp;€</span>
+      </div>
+      <div><span class="gb-pack-save">Économisez 4,99&nbsp;€</span></div>
+    </div>
+
+    <!-- Pack Ultime -->
+    <div
+      class="gb-pack-card is-active"
+      onclick="gbPickPack(this, '53992942371158')"
+      role="radio"
+      aria-checked="true"
+      tabindex="0"
+    >
+      <div class="gb-pack-badge">⭐ Le plus populaire</div>
+      <div class="gb-pack-name">Pack Ultime 🚀</div>
+      <ul class="gb-pack-items">
+        <li>GlamBrush USB 3-en-1</li>
+        <li>8 adaptateurs inclus</li>
+        <li>Shampooing Bio 150ml&nbsp;<span class="gift">offert</span></li>
+        <li>Tapis Silicone&nbsp;<span class="gift">offert</span></li>
+      </ul>
+      <div>
+        <span class="gb-pack-price">34,99&nbsp;€</span>
+        <span class="gb-pack-compare">42,97&nbsp;€</span>
+      </div>
+      <div><span class="gb-pack-save">Économisez 7,98&nbsp;€</span></div>
+    </div>
+
+  </div>
+
+  <div class="gb-packs__atc-wrap gb-reveal" data-d="2">
+    <button
+      id="gb-pack-atc-btn"
+      class="gb-pulse"
+      onclick="gbAddPack()"
+      aria-label="Ajouter le pack sélectionné au panier"
+    >
+      Ajouter ce pack au panier →
+    </button>
+
+    <div class="gb-payment-badges">
+      <span class="gb-payment-badge">VISA</span>
+      <span class="gb-payment-badge">Mastercard</span>
+      <span class="gb-payment-badge">PayPal</span>
+      <span class="gb-payment-badge">🍎 Pay</span>
+      <span class="gb-payment-badge">G Pay</span>
+      <span class="gb-payment-badge">Amex</span>
+    </div>
+    <p class="gb-security-note">🔒 Paiement 100% sécurisé · Livraison 3-5 jours · Retour 30 jours</p>
+  </div>
+</section>
+
+<script>
+  window._gbVariant = '53992942371158';
+</script>
+
+{% schema %}
+{
+  "name": "Pack Selector GlamBrush",
+  "settings": [],
+  "presets": [{ "name": "Pack Selector GlamBrush" }]
+}
+{% endschema %}
